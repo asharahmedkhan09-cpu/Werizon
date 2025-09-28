@@ -1,0 +1,101 @@
+[gd_scene load_steps=15 format=3 uid="uid://nr81fgi7cism"]
+
+[ext_resource type="Script" uid="uid://cdhrt3d7fb7q" path="res://scenes/robot.gd" id="1_i42o3"]
+[ext_resource type="Texture2D" uid="uid://dx2cvrfgdvggt" path="res://assets/sprites/robot_enemy_files/e3a0bccbd86dc012fb2c21ce5cf08563.png" id="1_ykvnc"]
+[ext_resource type="PackedScene" uid="uid://bllgh6nrkcc4m" path="res://scenes/killzone.tscn" id="2_i42o3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcrfe"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(0, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwnim"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(79, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5kvo"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(158, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e20l1"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(237, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujkns"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(316, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sycts"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(395, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ru31"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(474, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4ksi"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(553, 0, 79, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw6bu"]
+atlas = ExtResource("1_ykvnc")
+region = Rect2(632, 0, 79, 79)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpobb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcrfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwnim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5kvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e20l1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujkns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sycts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ru31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4ksi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw6bu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doy2i"]
+size = Vector2(32, 46)
+
+[node name="robot" type="Node2D"]
+script = ExtResource("1_i42o3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wpobb")
+autoplay = "default"
+frame_progress = 0.47333774
+
+[node name="killzone" parent="." instance=ExtResource("2_i42o3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(2, 6)
+shape = SubResource("RectangleShape2D_doy2i")
+
+[node name="raycastLEFT" type="RayCast2D" parent="."]
+position = Vector2(1, 5)
+target_position = Vector2(75, 0)
+
+[node name="raycastRIGHT" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(-65, 0)
